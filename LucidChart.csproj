@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AF77DD80-BFDD-48E1-B696-0AF815657E5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LucidChart</RootNamespace>
+    <AssemblyName>LucidChart</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build|AnyCPU'">
+    <OutputPath>bin\Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Countersoft.Foundation.Commons">
+      <HintPath>libs\Countersoft.Foundation.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Countersoft.Foundation.Contracts">
+      <HintPath>libs\Countersoft.Foundation.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Countersoft.Gemini">
+      <HintPath>libs\Countersoft.Gemini.dll</HintPath>
+    </Reference>
+    <Reference Include="Countersoft.Gemini.Commons">
+      <HintPath>libs\Countersoft.Gemini.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Countersoft.Gemini.Contracts">
+      <HintPath>libs\Countersoft.Gemini.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Countersoft.Gemini.Extensibility">
+      <HintPath>libs\Countersoft.Gemini.Extensibility.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth">
+      <HintPath>libs\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\MVC\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="LucidChart.cs" />
+    <Compile Include="LucidChartModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="LucidChart.css" />
+    <Content Include="LucidChart.js" />
+    <None Include="views\LucidChart.cshtml" />
+    <Content Include="views\Settings.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del $(ProjectDir)$(TargetName).dll 2&gt;null 1&gt;null
+copy $(TargetDir)$(TargetName).dll $(ProjectDir)$(TargetName).dll
+
+del $(ProjectDir)$(TargetName).pdb
+rem copy $(TargetDir)$(TargetName).pdb $(ProjectDir)$(TargetName).pdb
+
+del $(ProjectDir)$(TargetName).zip
+$(ProjectDir)libs\7za.exe a $(TargetDir)$(TargetName).zip $(ProjectDir)*.dll $(ProjectDir)*.pdb $(ProjectDir)*.manifest $(ProjectDir)views $(ProjectDir)*.js $(ProjectDir)*.css 
+
+del $(ProjectDir)$(TargetName).dll
+del $(ProjectDir)$(TargetName).pdb</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

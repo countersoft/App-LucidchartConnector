@@ -1,0 +1,25 @@
+﻿div.deleteHover img
+{
+    padding:0px;
+    border:1px solid #021a40;
+}
+
+div.deleteHover a
+{
+    text-decoration: none;
+}
+
+#lucichart .thumbnails .delete-chart
+{
+    color:red;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    cursor: pointer;
+}
+
+#lucichart .thumbnails li:hover .delete-chart
+{
+    display: block;
+}

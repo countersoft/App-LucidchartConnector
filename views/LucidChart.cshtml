@@ -1,0 +1,41 @@
+﻿@model LucidChart.LucidChartModel
+
+<link rel="stylesheet" href="~/assets/styles/apps/17F18EC0-99A9-4851-8587-85CE6DF9C995/LucidChart.css" media="screen, projection" />
+<script type="text/javascript" src="~/assets/scripts/apps/17F18EC0-99A9-4851-8587-85CE6DF9C995/LucidChart.js"></script>
+
+<div id="lucichart">
+    @if (Model.HasData)
+    {
+        <ul class='thumbnails'>
+            @foreach (LucidChart.LucidChartData chart in Model.LucidChartData.Value)
+            {
+                <li class='left'>
+                    <div class="deleteHover pos-relative">
+                        <a class='thumbnail' href='@Model.Url/apps/lucidchart/viewdocument/@Model.ProjectCode/@Model.ProjectId/@Model.IssueId/@chart.DocumentId'>
+                            <img src='@Model.Url/apps/lucidchart/thumbnail/@Model.AppId/@Model.ControlId/@Model.IssueId/@chart.DocumentId'/>
+                            <br /><span class="chart-name">@chart.DocumentName</span>
+                        </a>
+                        @*<span class='fonticon-cross middle' id="@chart.DocumentId,@Model.IssueId,@Model.ProjectId,@Model.ProjectCode" title='Delete chart'></span>*@
+                        <span class='fonticon-cross middle delete-chart' id="'D',@chart.DocumentId" title='Delete chart'></span>
+                    </div>
+                 </li>
+              }
+        </ul>
+    }
+    else
+    {
+        <a target='_blank' href='http://docs.countersoft.com/using-lucidchart/'>
+            <div class='clearfix'></div>
+            <div>
+                <img src='@Model.Url/assets/images/empty-state/no-lucidchart.png' />
+            </div>
+        </a>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        lucidChart.init('17F18EC0-99A9-4851-8587-85CE6DF9C995', '28FE1D91-7730-4067-8A10-F452FCB9D090', '@Model.Url', '@Model.IssueId', '@Model.ProjectId', '@Model.ProjectCode');
+    });
+    //# sourceURL=LucidChartInit.js
+</script>
