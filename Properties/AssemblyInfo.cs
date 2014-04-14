@@ -1,8 +1,8 @@
 using System.Reflection;
 using System.Security;
 
-[assembly: AssemblyTitle("LucidChart")]
-[assembly: AssemblyDescription("LucidChart")]
+[assembly: AssemblyTitle("LucidchartConnector")]
+[assembly: AssemblyDescription("LucidchartConnector")]
 
 [assembly: AssemblyCompany("Countersoft Limited")]
 [assembly: AssemblyProduct("Gemini Project Tracking Platform")]
