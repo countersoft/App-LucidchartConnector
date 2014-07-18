@@ -45,7 +45,7 @@ namespace LucidChart
     AppControlGuid("28FE1D91-7730-4067-8A10-F452FCB9D090"),
     AppAuthor("Countersoft"),
     AppKey("Lucidchart"),
-    AppName("LucidChart"),
+    AppName("LucidChart Connector"),
     AppDescription("LucidChart"),
     AppRequiresConfigScreen(true)]
     [ValidateInput(false)]
